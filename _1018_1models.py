@@ -1,4 +1,5 @@
 # ORM (sqlalchemy) II dalis - ryšiai
+# one to many ryšys
 
 from sqlalchemy import Column, Integer, String, ForeignKey, create_engine
 from sqlalchemy.ext.declarative import declarative_base

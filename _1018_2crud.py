@@ -1,3 +1,4 @@
+# one to many ryšys
 # sessionmakeris yra modulyje .orm
 from sqlalchemy.orm import sessionmaker
 from _1018_1models import engine, Tevas, Vaikas
