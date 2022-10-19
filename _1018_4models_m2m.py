@@ -6,6 +6,7 @@ engine = create_engine('sqlite:///data/tevai_vaikai_m2m.db')
 Base = declarative_base()
 
 # Table reikia importuotis. Duomenu bazes schema Base.metadata
+# reikalinga kaip tarpine lentele, kai nenesa papildomos informacijos ir tiesiogiai nesikreipiam ir skirta many2many
 tevai_vaikai_table = Table('tevai_vaikai', Base.metadata,
     Column('tevas_id', Integer, ForeignKey("tevas.id")),
     Column('vaikas_id', Integer, ForeignKey("vaikas.id"))
