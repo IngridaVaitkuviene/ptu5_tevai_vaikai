@@ -6,16 +6,12 @@ from _1018_1models import engine, Tevas, Vaikas
 session = sessionmaker(bind=engine)()
 
 # CRUD
-def create_tevas(vardas, pavarde):
+def create_tevas(argas1, argas2):
     # klases Tevas objektas tevas
-    tevas = Tevas(vardas=vardas, pavarde=pavarde)
+    tevas = Tevas(vardas=argas1, pavarde=argas2)
     session.add(tevas)
     session.commit()
     return tevas
-
-def read_tevai():
-    tevai = session.query(Tevas).all()
-    return tevai
 
 def create_vaikas(vardas, pavarde, tevas, mokymo_istaiga=None):
     vaikas = Vaikas(
@@ -28,8 +24,22 @@ def create_vaikas(vardas, pavarde, tevas, mokymo_istaiga=None):
     session.commit()
     return vaikas
 
+def create_object(object_class, **kwargs):
+    obj = object_class(**kwargs)
+    session.add(obj)
+    session.commit()
+    return obj
+
+def read_tevai():
+    tevai = session.query(Tevas).all()
+    return tevai
+
 def read_vaikai():
     return session.query(Vaikas).all()
+
+def read_object(object_class):
+    obj = session.query(object_class).all()
+    return obj
 
 def delete_object(object_class, object_id):
     obj = session.query(object_class).get(object_id)
