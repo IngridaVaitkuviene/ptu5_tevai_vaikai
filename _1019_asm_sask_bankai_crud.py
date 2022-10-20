@@ -39,21 +39,45 @@ def ivesti_banka():
     return bankas
 
 def ivesti_saskaita():
-    numeris = int(input("Įveskite numerį: "))
+    numeris = input("Įveskite numerį: ")
     balansas = 0
-
+    asmenys = session.query(Asmuo).all()
+    for asmuo in asmenys:
+        print(asmuo)
+    asmuo_id = int(input("Pasirinkite vartotojo ID: "))
+    bankai = session.query(Bankas).all()
+    for bankas in bankai:
+        print(bankas)
+    bankas_id = int(input("Pasirinkite banko ID: "))
+    saskaita = Saskaita(numeris=numeris, balansas=balansas, asmuo_id=asmuo_id, bankas_id=bankas_id)
+    session.add(saskaita)
+    session.commit()
+    return saskaita
 
 def ivesti_pajamas_islaidas():
-    pass
+    saskaitos = session.query(Saskaita).all()
+    for saskaita in saskaitos:
+        print(saskaita)
+    saskaitos_id = int(input("Pasirinkite sąskaitos ID: "))
+    pasirinkta_saskaita = session.query(Saskaita).get(saskaitos_id)
+    pajamos_islaidos = float(input("Įveskite pajamas/išlaidas (su -): "))
+    pasirinkta_saskaita.balansas += pajamos_islaidos
+    session.commit()
 
 def perziureti_asmenis():
-    pass
+    asmenys = session.query(Asmuo).all()
+    for asmuo in asmenys:
+        print(asmuo)
 
 def perziureti_bankus():
-    pass
+    bankai = session.query(Bankas).all()
+    for bankas in bankai:
+        print(bankas)
 
 def perziureti_saskaitas():
-    pass
+    saskaitos = session.query(Saskaita).all()
+    for saskaita in saskaitos:
+        print(saskaita)
 
 if __name__ == "__main__":
     while True:
