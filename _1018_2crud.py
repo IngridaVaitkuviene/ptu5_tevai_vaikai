@@ -6,9 +6,9 @@ from _1018_1models import engine, Tevas, Vaikas
 session = sessionmaker(bind=engine)()
 
 # CRUD
-def create_tevas(argas1, argas2):
+def create_tevas(vardas, pavarde):
     # klases Tevas objektas tevas
-    tevas = Tevas(vardas=argas1, pavarde=argas2)
+    tevas = Tevas(vardas=vardas, pavarde=pavarde)
     session.add(tevas)
     session.commit()
     return tevas
